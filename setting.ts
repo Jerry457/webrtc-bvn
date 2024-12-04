@@ -1,4 +1,4 @@
-export let bvnVersion = "BVN2.6-Competitive"
+export let bvnVersion = "BVN2.6"
 
 const versionSelect = document.querySelector("#versionSelect") as HTMLSelectElement | null
 versionSelect?.addEventListener("change", () => {
