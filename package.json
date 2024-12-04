@@ -1,0 +1,19 @@
+{
+  "name": "webrtc-bvn",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite --host --port=4000",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "typescript": "^5.7.2",
+    "vite": "^5.3.4"
+  }
+}

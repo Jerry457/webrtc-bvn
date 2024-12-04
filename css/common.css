@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    grid-template-rows: 50px calc(100vh - 50px);
+}
+
+#settingButton {
+    left: 20px;
+    position: absolute;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    top: 3px;
+}
+
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: none;
+}
+
+.popup {
+    position: fixed;
+    width: 400px;
+    background-color: rgb(255, 255, 255);
+    left: 0;
+    right: 0;
+    top: 200px;
+    margin: auto;
+}
+
+.close {
+    background-color: transparent;
+    color: red;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+
+#settingContainter {
+    margin-top: 35px;
+}
+
+#settingContainter fieldset {
+    margin: 16px ;
+
+}
+
+#settingContainter fieldset label {
+    text-align: center;
+    display: block;
+    user-select: none;
+    padding: 5px 0;
+}
+
+#settingContainter fieldset input {
+    margin: 5px 0;
+    width: 250px;
+    font-size: 15px;
+    height: 20px;
+}
