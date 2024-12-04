@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": true,
+    "prettier.tabWidth": 4,
+    "deno.enable": true,
+    "deno.enablePaths": ["./websocket-server"],
+    "deno.lint": false
+}

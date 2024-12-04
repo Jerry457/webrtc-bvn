@@ -11,6 +11,17 @@
             "url": "http://localhost:4000",
             "webRoot": "${workspaceFolder}/src",
             "preLaunchTask": "dev"
-        }
+        },
+        {
+            "request": "launch",
+            "name": "DebugWebSocketServer",
+            "type": "node",
+            "program": "${workspaceFolder}/websocket-server/index.ts",
+            "cwd": "${workspaceFolder}",
+            "env": {},
+            "runtimeExecutable": "C:\\Users\\22348\\.deno\\bin\\deno.EXE",
+            "runtimeArgs": ["run", "--inspect-wait", "--allow-all", "--unstable-sloppy-imports"],
+            "attachSimplePort": 9229
+        },
     ]
 }
