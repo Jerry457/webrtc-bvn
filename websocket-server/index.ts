@@ -31,3 +31,5 @@ function handleRequest(req: Request) {
 }
 
 Deno.serve({ port: 8000 }, handleRequest)
+
+// nohup deno run --node-modules-dir --unstable-sloppy-imports --allow-all websocket-server/index.ts > output.log 2>&1 &
