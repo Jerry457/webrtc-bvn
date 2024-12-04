@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "process_assets",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "Debug",
@@ -22,6 +29,6 @@
             "runtimeExecutable": "C:\\Users\\22348\\.deno\\bin\\deno.EXE",
             "runtimeArgs": ["run", "--inspect-wait", "--allow-all", "--unstable-sloppy-imports"],
             "attachSimplePort": 9229
-        },
+        }
     ]
 }

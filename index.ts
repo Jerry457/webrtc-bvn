@@ -1,4 +1,4 @@
-import "./redirect_fetch.ts"
+import "./redirectFetch.ts"
 import { serverInfo, bvnVersion } from "./setting"
 import { PeerConnectionManager } from "./peerConnectionManager"
 
