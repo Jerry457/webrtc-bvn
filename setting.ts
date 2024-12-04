@@ -1,18 +1,11 @@
-export let bvnVersion = "BVN2.6-Competitive"
+export let bvnVersion = "BVN2.6"
 
 const versionSelect = document.querySelector("#versionSelect") as HTMLSelectElement | null
 versionSelect?.addEventListener("change", () => {
-    console.log("version changed to", bvnVersion)
-    localStorage.setItem("version", bvnVersion)
     bvnVersion = versionSelect.value
+    localStorage.setItem("bvnVersion", bvnVersion)
+    console.log("version change to", bvnVersion)
 })
-if (versionSelect) {
-    const version = localStorage.getItem("version")
-    if (version) {
-        bvnVersion = version
-        versionSelect.value = bvnVersion
-    }
-}
 
 export const serverInfo: {
     wsUrl: string
@@ -57,6 +50,8 @@ function onUpdateServerInfo() {
 export function setServerInfo(wsUrl?: string, urls?: string, username?: string, credential?: string) {
     if (wsUrl) {
         serverInfo.wsUrl = wsUrl
+        webSocketUrlInput.value = wsUrl
+        localStorage.setItem("wsUrl", wsUrl)
     }
 
     if (urls) {
@@ -85,7 +80,7 @@ userNameInput.addEventListener("change", onIceServerInput)
 passwordInput.addEventListener("change", onIceServerInput)
 
 webSocketUrlInput.addEventListener("change", () => {
-    setServerInfo(serverInfo.wsUrl)
+    setServerInfo(webSocketUrlInput.value)
 })
 
 settingButton.addEventListener("click", () => {
@@ -95,7 +90,6 @@ settingButton.addEventListener("click", () => {
 settingModalCloseButton.addEventListener("click", () => {
     settingModal.style.display = "none"
 })
-
 
 window.addEventListener("load", () => {
     const wsUrl = localStorage.getItem("wsUrl") || ""
@@ -108,4 +102,12 @@ window.addEventListener("load", () => {
     }
 
     setServerInfo(wsUrl, iceServerUrl, iceServerUsername, iceServerPassword)
+
+    if (versionSelect) {
+        const version = localStorage.getItem("bvnVersion")
+        if (version) {
+            bvnVersion = version
+            versionSelect.value = bvnVersion
+        }
+    }
 })
