@@ -60,11 +60,11 @@ export function setServerInfo(wsUrl?: string, urls?: string, username?: string, 
         } else {
             credential = credential === "" ? undefined : credential
             username = username === "" ? undefined : username
-            serverInfo.iceServers = [{ urls: urls, username, credential }]
+            serverInfo.iceServers = [{ urls, username, credential }]
 
-            localStorage.setItem("iceServerUrl", iceServerUrlInput.value)
-            if (credential) localStorage.setItem("iceServerPassword", credential)
+            localStorage.setItem("iceServerUrl", urls)
             if (username) localStorage.setItem("iceServerUsername", username)
+            if (credential) localStorage.setItem("iceServerPassword", credential)
         }
     }
 
