@@ -70,13 +70,12 @@ async function connect(key: string) {
     peerConnectionManager.addRTCPeerConnectionHandler("key", keyPeerConnectionHandler)
     peerConnectionManager.createRTCPeerConnection("video")
     const { id } = peerConnectionManager.createRTCPeerConnection("key")
-    socket.addEventListener("open", () => {
-        peerConnectionManager.sendOffer(id)
+    socket.addEventListener("open", async () => {
+        await peerConnectionManager.sendOffer(id)
     })
 }
 
 connectButton.addEventListener("click", () => connect(keyInput.value))
-
 
 const urlParams = new URLSearchParams(window.location.search)
 const key = urlParams.get("key")
@@ -89,5 +88,4 @@ if (server) {
 
 if (key) {
     keyInput.value = key
-    setTimeout(() => connect(key), 1000)
 }

@@ -59,7 +59,7 @@ function keyPeerConnectionHandler(
 
     keyChannel.onopen = async () => {
         const { id } = peerConnectionManager.createRTCPeerConnection("video")
-        peerConnectionManager.sendOffer(id)
+        await peerConnectionManager.sendOffer(id)
     }
 
     keyChannel.onclose = () => {
@@ -93,7 +93,7 @@ function onPlay(rufflePlayer: HTMLCanvasElement) {
     const { id } = peerConnectionManager.createRTCPeerConnection("key")
 
     socket.onopen = async () => {
-        peerConnectionManager.sendOffer(id)
+        await peerConnectionManager.sendOffer(id)
     }
 }
 
