@@ -63,7 +63,7 @@ export class PeerConnectionManager {
     async onSocketMessage(event: MessageEvent<string>) {
         const message = JSON.parse(event.data) as WebSocketMessage
 
-        if (message.key!== this.key) {
+        if (message.key !== this.key) {
             return
         }
 
@@ -103,7 +103,7 @@ export class PeerConnectionManager {
 
     createRTCPeerConnection(pcType: string, id?: string) {
         id = id || crypto.randomUUID()
-        const peerConnection = new RTCPeerConnection()
+        const peerConnection = new RTCPeerConnection(this.configuration)
         this.idPeerConnectionDataMap.set(id, {
             id,
             pcType,
