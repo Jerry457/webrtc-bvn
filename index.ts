@@ -2,9 +2,10 @@ import "./redirectFetch.ts"
 import { serverInfo, bvnVersion } from "./setting"
 import { PeerConnectionManager } from "./peerConnectionManager"
 
-const keyElement = document.querySelector("#key")!
+const keyInputElement = document.querySelector("#key")! as HTMLInputElement
 const container = document.querySelector("#container")!
 const startButton = document.querySelector("#startButton")! as HTMLButtonElement
+const shareLink = document.querySelector("#shareLink")!
 
 function generateRandomString(length: number) {
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789" // 包含大小写字母和数字
@@ -18,10 +19,23 @@ function generateRandomString(length: number) {
     return password
 }
 
-const pairKey = generateRandomString(5)
-// @ts-ignore
-window.pairKey = pairKey
-keyElement.textContent = pairKey
+let pairKey = localStorage.getItem("pairKey")
+if (!pairKey) pairKey = generateRandomString(5)
+keyInputElement.value = pairKey
+localStorage.setItem("pairKey", pairKey)
+
+keyInputElement.addEventListener("change", () => {
+    pairKey = keyInputElement.value
+    localStorage.setItem("pairKey", pairKey)
+})
+
+shareLink.addEventListener("click", () => {
+    const linkUrl = new URL(`${location.protocol}//${location.host}/client.html`)
+    linkUrl.searchParams.set("key", pairKey!)
+    linkUrl.searchParams.set("servers", JSON.stringify(serverInfo))
+    navigator.clipboard.writeText(linkUrl.href)
+    alert("链接已复制")
+})
 
 async function videoPeerConnectionHandler(peerConnection: RTCPeerConnection, rufflePlayer: HTMLCanvasElement) {
     const stream = rufflePlayer.captureStream(144)
@@ -83,7 +97,7 @@ function onPlay(rufflePlayer: HTMLCanvasElement) {
     // const tracks = stream.getTracks()
 
     const socket = new WebSocket(serverInfo.wsUrl)
-    const peerConnectionManager = new PeerConnectionManager(pairKey, socket, { iceServers: serverInfo.iceServers })
+    const peerConnectionManager = new PeerConnectionManager(pairKey!, socket, { iceServers: serverInfo.iceServers })
 
     peerConnectionManager.addRTCPeerConnectionHandler("video", videoPeerConnectionHandler, rufflePlayerCanvas)
     peerConnectionManager.addRTCPeerConnectionHandler("key", keyPeerConnectionHandler, {
