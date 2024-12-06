@@ -1,2 +1,4 @@
 dist
 node_modules
+websocket-server/output.log
+output.log
