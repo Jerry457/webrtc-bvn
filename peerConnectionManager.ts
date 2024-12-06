@@ -1,4 +1,4 @@
-import { uuid } from "uuidv4"
+import { v4 } from "uuid"
 
 type userData = {
     id: string
@@ -104,7 +104,7 @@ export class PeerConnectionManager {
     }
 
     createRTCPeerConnection(pcType: string, id?: string) {
-        id = id || uuid()
+        id = id || v4()
         const peerConnection = new RTCPeerConnection(this.configuration)
         this.idPeerConnectionDataMap.set(id, {
             id,
