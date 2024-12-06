@@ -15,5 +15,8 @@
         "@types/node": "^20.14.11",
         "typescript": "^5.7.2",
         "vite": "^5.3.4"
+    },
+    "dependencies": {
+        "uuidv4": "^6.2.13"
     }
 }
