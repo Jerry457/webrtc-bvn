@@ -1,6 +1,7 @@
 import "./redirectFetch.ts"
 import { serverInfo, bvnVersion } from "./setting"
 import { PeerConnectionManager } from "./peerConnectionManager"
+import copy from "copy-to-clipboard"
 
 const keyInputElement = document.querySelector("#key")! as HTMLInputElement
 const container = document.querySelector("#container")!
@@ -33,7 +34,7 @@ shareLink.addEventListener("click", () => {
     const linkUrl = new URL(`${location.protocol}//${location.host}/client.html`)
     linkUrl.searchParams.set("key", pairKey!)
     linkUrl.searchParams.set("servers", JSON.stringify(serverInfo))
-    navigator.clipboard.writeText(linkUrl.href)
+    copy(linkUrl.href)
     alert("链接已复制")
 })
 
