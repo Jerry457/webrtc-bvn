@@ -34,24 +34,18 @@ function onUpdateServerInfo() {
 }
 
 export function setServerInfo(wsUrl?: string, urls?: string, username?: string, credential?: string) {
-    if (wsUrl) {
+    if (wsUrl !== undefined) {
         serverInfo.wsUrl = wsUrl
         webSocketUrlInput.value = wsUrl
         localStorage.setItem("wsUrl", wsUrl)
     }
 
-    if (urls) {
-        if (urls === "") {
-            serverInfo.iceServers.length = 0
-        } else {
-            credential = credential === "" ? undefined : credential
-            username = username === "" ? undefined : username
-            serverInfo.iceServers = [{ urls, username, credential }]
+    if (urls !== undefined) {
+        serverInfo.iceServers = [{ urls, username, credential }]
 
-            localStorage.setItem("iceServerUrl", urls)
-            if (username) localStorage.setItem("iceServerUsername", username)
-            if (credential) localStorage.setItem("iceServerPassword", credential)
-        }
+        localStorage.setItem("iceServerUrl", urls)
+        if (username !== undefined) localStorage.setItem("iceServerUsername", username)
+        if (credential !== undefined) localStorage.setItem("iceServerPassword", credential)
     }
 
     onUpdateServerInfo()

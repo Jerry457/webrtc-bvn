@@ -33,7 +33,7 @@ keyInputElement.addEventListener("change", () => {
 shareLink.addEventListener("click", () => {
     const linkUrl = new URL(`${location.protocol}//${location.host}/client.html`)
     linkUrl.searchParams.set("key", pairKey!)
-    linkUrl.searchParams.set("servers", JSON.stringify(serverInfo))
+    linkUrl.searchParams.set("serverInfo", JSON.stringify(serverInfo))
     copy(linkUrl.href)
     alert("链接已复制")
 })

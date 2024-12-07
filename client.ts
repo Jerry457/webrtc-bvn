@@ -80,7 +80,7 @@ connectButton.addEventListener("click", () => connect(keyInput.value))
 const urlParams = new URLSearchParams(window.location.search)
 const key = urlParams.get("key")
 
-const server = urlParams.get("server")
+const server = urlParams.get("serverInfo")
 if (server) {
     const data = JSON.parse(server) as typeof serverInfo
     let urls: string | undefined, username: string | undefined, credential: string | undefined
