@@ -82,8 +82,14 @@ const key = urlParams.get("key")
 
 const server = urlParams.get("server")
 if (server) {
-    const serverInfo = JSON.parse(server)
-    setServerInfo(serverInfo)
+    const data = JSON.parse(server) as typeof serverInfo
+    let urls: string | undefined, username: string | undefined, credential: string | undefined
+    if (data.iceServers[0]) {
+        urls = data.iceServers[0].urls as string
+        username = data.iceServers[0].username
+        credential = data.iceServers[0].credential
+    }
+    setServerInfo(data.wsUrl, urls, username, credential)
 }
 
 if (key) {
